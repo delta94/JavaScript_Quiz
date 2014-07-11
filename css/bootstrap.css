@@ -5,6 +5,7 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -12,6 +13,28 @@ html {
 }
 body {
   margin: 0;
+  background-color:#9CE1AE !important;
+}
+ul {
+    list-style-type:none;
+}
+div {
+    max-width:550px; !important;
+}
+div.questions {
+    padding:50px;
+    background-color:white;
+    border:10px solid #24A345 !important;
+    border-radius:15px;
+    -webkit-box-shadow: 10px 10px 20px -4px rgba(0,0,0,0.33);
+    -moz-box-shadow: 10px 10px 20px -4px rgba(0,0,0,0.33);
+    box-shadow: 10px 10px 20px -4px rgba(0,0,0,0.33);
+}
+#question {
+    font-size:2em;
+    font-weight:bold;
+    color:darkgreen;
+    font-family:'Open Sans', Helvetica, sans-serif !important;
 }
 article,
 aside,

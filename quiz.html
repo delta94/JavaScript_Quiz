@@ -52,7 +52,7 @@
         </form>
 
     <div class="questions row">
-        <div class="span4 offset4 questions">
+        <div class="span4 offset4">
             <p id="question"></p>
             <form>
                     <ul>
@@ -67,6 +67,7 @@
                         <li>
                             <label for="2"></label>
                             <input type="radio" name="choice" id="2" value="2"/><p></p>
+                        </li>
                         <li>
                             <label for="3"></label>
                             <input type="radio" name="choice" id="3" value="3"/><p></p>
@@ -74,12 +75,11 @@
                     </ul>
             </form>
         <p id="msg">**You must select an answer before moving on**</p>
-                <div class="row span4">
         <button class="btn-info" id="back">BACK</button>
         <button class="btn-primary" id="next">NEXT</button>
-                </div>
-        </div>
-    </div><!-- questions-->
+        </div><!--span-->
+        <div span4></div>
+    </div><!-- questions row-->
 </div><!--container-->
 <!-- Le javascript
 ================================================== -->
