@@ -53,80 +53,32 @@ $(function (){
             else return false;
         });
     }
-    $.getJSON("js/allQuestions.json", function(allQuestions) {
-        var i = 0;
-        var aQ = allQuestions;
-        var storeChecked = [];
-        /*array that stores the user's answer, triggered by clicking a radio button*/
-        $("input:radio[name=choice]").on('click', function () {
-            storeChecked[i - 1] = $("input:checked").val();
-        });
-        var qFunc = {
-            nextQ: function () {
-                if(i === (aQ.length-1)){
-                    $("#next").hide();
-                    $("#back").after('<button class="btn-success" id="score">SCORE</button>');
-                    $("#score").on('click', function() {
-                        if (0 == $('input:radio:checked').length) {
-                            $("#msg").css("opacity", "1");
-                        }
+    function Question(theQuestion, theChoices, theCorrectAnswer) {
+        this.question = theQuestion;
+        this.choices = theChoices;
+        this.correctAnswer = theCorrectAnswer;
+    }
+    var counter = 0;
+    Question.prototype.loadQuestion = function() {
+        $("#question").text(this.question);
+        counter++;
+    };
+    var allQuestions = [];
+    var Q0 = new Question("Which country won the 2014 World Cup?", ["USA", "Brazil", "Holland", "Germany"], 3);
+    var Q1 = new Question("Which book is by Charlotte Bronte?", ["Wuthering Heights", "The Professor", "Middlemarch", "Bleak House"], 1);
+    allQuestions.push(Q0);
+    allQuestions.push(Q1);/*could add Add to Array as method of Question, then loop through all the questions and invoke add to Array...*/
+    $("button").on('click', function() {
+        var newLoadQ = allQuestions[counter].loadQuestion.bind(allQuestions[counter])
+        newLoadQ();
 
-                        else {
-                            $("#msg").css("opacity", "0");
-                            var score =0;
-
-                        for (var j = 0; j < aQ.length; j++) {
-                        if (storeChecked[j] == aQ[j].correctAnswer) //doesn't work if === is used
-                            {score++;}
-                            }
-                            $(".questions").replaceWith("<h3 class='hero-unit'>You scored " + score + " out of " + aQ.length + ".</h3>");
-
-                        }
-                    });
-                }
-                if (0 !== $('input:radio:checked').length || arguments[0] === 1) { /*arguments[0] === 1 to override qualifcation for checked answer so call to qFunc.nextQ(1) loads first question*/
-                    $("#msg").css("opacity", "0");
-                    /*hides error message if an answer is selected*/
-                    if (storeChecked[i]) { /*if user has already selected a choice for the question we're loading...*/
-                        var a = storeChecked[i];
-                        $('input:radio[name=choice]')[a].checked = true;
-                        /*...check the radio button that was previously chosen*/
-                    }
-                    else {
-                        $("input[name=choice]").attr('checked', false);
-                        /*otherwise, uncheck all the radio buttons!*/
-                    }
-                    $("#question").text(aQ[i].Question).css({opacity: "0"}).fadeTo("slow", 1);
-                    /*load the question and answers at array position i*/
-                    for (var j = 0; j < 4; j++) {
-                        var id = "#" + j;
-                        $(id).next("p").text(aQ[i].Choices[j]);
-                    }
-                    i++;
-                } else {
-                    $("#msg").css("opacity", "1");
-                    /*displays error message if no answer is selected when user clicks Next button*/
-                }
-                if (i >= 2)$("#back").css("opacity", "1");
-            },
-                prevQ: function () {
-                $("#msg").css({opacity: "0"}) ;
-                if($("#score")){$("#score").remove();}
-                $("#next").show();
-                $("#question").text(aQ[i - 2].Question);
-                var a = storeChecked[i - 2];
-                $('input:radio[name=choice]')[a].checked = true;
-                for (var j = 0; j < 4; j++) {
-                    var id = "#" + j;
-                    $(id).next("p").text(aQ[i - 2].Choices[j]);
-                }
-                i--;
-            }
-        };
-        qFunc.nextQ(1);
-        $("#next").on('click', qFunc.nextQ);
-        $("#back").on('click', qFunc.prevQ);
     });
+
+
+
+
+
+
 })();
 /**
  * Created by Yuna on 6/21/2014.
