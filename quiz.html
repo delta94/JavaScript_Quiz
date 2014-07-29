@@ -2,47 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>A Simple Quiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-
-        .form-signin {
-            max-width: 300px;
-            padding: 19px 29px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="text"],
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 15px;
-            padding: 7px 9px;
-        }
-
-    </style>
-    <!--<link href="css/bootstrap-responsive.css" rel="stylesheet">-->
 </head>
+<script type="text/javascript" src="js/handlebars-v1.3.0.js"></script>
     <div class="container">
         <form class="form-signin span2">
             <h2 class="form-signin-heading">Please sign in</h2>
@@ -50,42 +16,34 @@
             <input type="password" class="input-block-level" id="password" placeholder="Password">
             <input class="btn btn-large btn-primary" type="submit">
         </form>
-
     <div class="questions row">
-        <div class="span4 offset4">
-            <p id="question"></p>
-            <form>
-                    <ul>
-                        <li>
-                            <label for="0"></label>
-                            <input type="radio" name="choice" id ="0" value="0"/><p></p>
-                        </li>
-                        <li>
-                            <label for="1"></label>
-                            <input type="radio" name="choice" id="1" value="1"/><p></p>
-                        </li>
-                        <li>
-                            <label for="2"></label>
-                            <input type="radio" name="choice" id="2" value="2"/><p></p>
-                        </li>
-                        <li>
-                            <label for="3"></label>
-                            <input type="radio" name="choice" id="3" value="3"/><p></p>
-                        </li>
-                    </ul>
-            </form>
+        <div class="a span6 offset3">
+            <div id="question"></div>
+                <script id="choices" type="text/x-handlebars-template">
+                    {{#list myQuestions}}
+                    <h1>{{question}}</h1>
+                    <form>
+                        <ul>
+                            <div><input class="choice" name="choice" type="radio" value="0"><li>{{choices.[0]}}</li></input></div>
+                            <div><input class="choice" name="choice" type="radio" value="1"><li>{{choices.[1]}}</li></input></div>
+                            <div><input class="choice" name="choice" type="radio" value="2"><li>{{choices.[2]}}</li></input></div>
+                            <div><input class="choice" name="choice" type="radio" value="3"><li>{{choices.[3]}}</li></input></div>
+                        </ul>
+                    </form>
+                    {{/list}}
+                </script>
         <p id="msg">**You must select an answer before moving on**</p>
-        <button class="btn-info" id="back">BACK</button>
-        <button class="btn-primary" id="next">NEXT</button>
+        <div class="buttons">
+            <button class="btn-info" id="back">BACK</button>
+            <button class="btn-primary" id="next">NEXT</button>
+            <button class="btn-success" id="calculate">Calculate!</button>
+        </div><!--buttons-->
         </div><!--span-->
         <div span4></div>
     </div><!-- questions row-->
 </div><!--container-->
-<!-- Le javascript
-================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/quiz.js"></script>
-
 </body>
 </html>
