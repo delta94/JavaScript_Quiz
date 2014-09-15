@@ -132,6 +132,7 @@ $("#back").on('click',
     });
 $("#calculate").on('click', function(){
     var score=0;
+    selectedAnswer[i] = $("input:checked").val();
     if($("input:checked").val()){
         for(var j=0; j<qLength; j++) {
             if (selectedAnswer[j] == allQuestions.myQuestions[j].correctAnswer) {
